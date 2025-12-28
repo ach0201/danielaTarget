@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>El Juicio del Dragón</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,500;1,500&family=Great+Vibes&display=swap');
+
+body{
+    margin:0;
+    height:100vh;
+    background:radial-gradient(circle at top, #1f0000, #000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:#f6ecdc;
+}
+
+/* Fuego ambiente */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:
+      radial-gradient(circle at 30% 80%, rgba(255,90,0,0.18), transparent 45%),
+      radial-gradient(circle at 70% 70%, rgba(255,140,0,0.18), transparent 45%);
+    animation:fuego 8s infinite alternate;
+}
+
+@keyframes fuego{
+    from{transform:translateY(0);}
+    to{transform:translateY(-45px);}
+}
+
+.card{
+    background:rgba(0,0,0,0.78);
+    border:2px solid #a73737;
+    border-radius:26px;
+    padding:38px;
+    width:360px;
+    text-align:center;
+    box-shadow:0 0 55px rgba(255,70,0,0.45);
+    position:relative;
+    z-index:1;
+    animation:aparecer 0.8s ease;
+}
+
+@keyframes aparecer{
+    from{opacity:0; transform:scale(0.92);}
+    to{opacity:1; transform:scale(1);}
+}
+
+h1{
+    font-family:'Cinzel', serif;
+    font-size:26px;
+    letter-spacing:1.2px;
+    margin-bottom:14px;
+}
+
+p{
+    font-family:'Playfair Display', serif;
+    font-size:16px;
+    line-height:1.8;
+}
+
+button{
+    margin-top:16px;
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#8a2424,#e46a6a);
+    color:white;
+    font-family:'Cinzel', serif;
+    font-size:14px;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px #ff8a8a;
+}
+
+.hidden{display:none;}
+
+.icon{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.error{
+    margin-top:16px;
+    color:#ffdada;
+    font-style:italic;
+    animation:fade 1.2s ease;
+}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(8px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* FINAL */
+.final h1{
+    font-family:'Great Vibes', cursive;
+    font-size:52px;
+    color:#ffd6d6;
+    margin-bottom:18px;
+}
+
+.mensaje-romantico{
+    font-family:'Playfair Display', serif;
+    font-size:17px;
+    line-height:2;
+    margin:26px 0;
+    color:#ffecec;
+    text-align:justify;
+}
+
+.firma{
+    margin-top:24px;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:14px;
+    color:#f0cfcf;
+}
+
+/* 🥚 HUEVITO ANIMADO */
+.huevo{
+    font-size:44px;
+    cursor:pointer;
+    margin-bottom:8px;
+    animation:latido 3s infinite;
+}
+
+.huevo:hover{
+    animation:temblor 0.6s infinite;
+}
+
+@keyframes latido{
+    0%,100%{transform:scale(1); filter:drop-shadow(0 0 6px rgba(255,120,120,0.5));}
+    50%{transform:scale(1.08); filter:drop-shadow(0 0 14px rgba(255,140,140,0.9));}
+}
+
+@keyframes temblor{
+    0%{transform:rotate(0deg);}
+    25%{transform:rotate(2deg);}
+    50%{transform:rotate(-2deg);}
+    75%{transform:rotate(1deg);}
+    100%{transform:rotate(0deg);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INICIO -->
+<div class="card" id="inicio">
+    <div class="icon">🐉</div>
+    <h1>El Juicio del Dragón</h1>
+    <p>
+        No cualquiera entra al reino.<br>
+        Solo quien entiende el fuego y la calma.<br><br>
+        <strong>Daniela</strong>, este ritual fue creado para ti.
+    </p>
+    <button onclick="mostrar('p1')">Comenzar el ritual</button>
+</div>
+
+<!-- PRUEBAS -->
+<div class="card hidden" id="p1">
+    <div class="icon">🔥</div>
+    <h1>Primera Prueba</h1>
+    <p>¿De qué casa nacen los dragones?</p>
+    <button onclick="fallo('e1')">Stark</button>
+    <button onclick="mostrar('p2')">Targaryen</button>
+    <button onclick="fallo('e1')">Lannister</button>
+    <div class="error hidden" id="e1">El dragón guarda silencio…</div>
+</div>
+
+<div class="card hidden" id="p2">
+    <div class="icon">👑</div>
+    <h1>Segunda Prueba</h1>
+    <p>¿Qué representa el fuego del dragón?</p>
+    <button onclick="fallo('e2')">Destrucción</button>
+    <button onclick="mostrar('p3')">Linaje y carácter</button>
+    <button onclick="fallo('e2')">Caos</button>
+    <div class="error hidden" id="e2">No es solo fuego… es esencia.</div>
+</div>
+
+<div class="card hidden" id="p3">
+    <div class="icon">🐲</div>
+    <h1>Tercera Prueba</h1>
+    <p>¿Quién domina realmente a un dragón?</p>
+    <button onclick="fallo('e3')">La fuerza</button>
+    <button onclick="fallo('e3')">El miedo</button>
+    <button onclick="mostrar('final')">El carácter</button>
+    <div class="error hidden" id="e3">Un dragón siente antes de obedecer…</div>
+</div>
+
+<!-- FINAL -->
+<div class="card hidden final" id="final">
+    <div class="huevo" onclick="huevo()">🥚</div>
+
+    <h1>Feliz Cumpleaños, Daniela 🎂✨</h1>
+
+    <div class="mensaje-romantico">
+        En este casi un año de conocernos, sabía que no podía dejar pasar una fecha como esta.<br><br>
+
+        Conocerte ha sido una experiencia muy bonita. Poco a poco te has ganado mi confianza,
+        incluso en esos momentos en los que dudas de ti misma. Yo sé que eres una guerrera,
+        por todo lo que haces y por todo lo que enfrentas en el día a día, aun cuando nadie más lo nota.<br><br>
+
+        Sigue con tu lucha. Estoy seguro de que podrás con todo y saldrás victoriosa,
+        como siempre 🔥🐉. Hay fuegos que no necesitan mostrarse para sentirse,
+        y el tuyo es de esos: constante, firme y lleno de carácter.<br><br>
+
+        Me alegra poder desearte lo mejor hoy y seguir viendo cómo escribes tu historia,
+        a tu manera ✨
+    </div>
+
+    <!-- MENSAJE SECRETO -->
+    <div class="error hidden" id="huevo">
+        Algunos dragones no rugen…<br>
+        simplemente se sienten.<br><br>
+        Este huevo no guarda fuego,<br>
+        guarda algo que creció sin prisa,<br>
+        pero con sinceridad 🐉✨
+    </div>
+
+    <div class="firma">
+        — De alguien que te admira más de lo que imaginas
+    </div>
+</div>
+
+<script>
+function mostrar(id){
+    document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function fallo(id){
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function huevo(){
+    document.getElementById("huevo").classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>
